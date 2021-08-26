@@ -2,23 +2,29 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Upload from '../views/UploadExcel.vue'
-import Datatable from '../views/Datatable.vue'
 import Contracts from '../views/Contracts.vue'
 import Test from '../views/Test.vue'
+import Welcome from '../views/Welcome.vue'
+import Rates from '../views/Rates.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
+    {
     path: '/',
+    name: 'Welcome',
+    component: Welcome
+    },
+  {
+    path: '/upload',
     name: 'Upload',
     component: Upload
   },
   {
-    path: '/datatable',
-    name: 'Datatable',
-    component: Datatable
+    path: '/rates',
+    name: 'Rates',
+    component: Rates
   },
   {
     path: '/contracts',

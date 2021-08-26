@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <div id="nav">
-      <router-link to="/">Upload</router-link>
+      <router-link to="/">Welcome</router-link>
+      <router-link to="/upload">Upload</router-link>
       <router-link to="/contracts">Contracts</router-link>
-      <router-link to="/datatable">Datatable</router-link>
-      <router-link to="/test">Test</router-link>
+      <router-link to="/rates">Rates</router-link>
 
     </div>
     <router-view/>

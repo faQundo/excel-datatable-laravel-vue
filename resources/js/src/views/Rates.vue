@@ -1,4 +1,10 @@
 <template>
+<div>
+    <div class="text-right pr-4">
+<v-btn color="primary" elevation="2" rounded @click="newContract()"
+      >Back<v-icon right dark> mdi-arrow-left</v-icon></v-btn
+    >
+    </div>
   <v-data-table
     dense
     :headers="headers"
@@ -6,6 +12,7 @@
     item-key="name"
     class="elevation-1"
   ></v-data-table>
+</div>
 </template>
 
 <script>

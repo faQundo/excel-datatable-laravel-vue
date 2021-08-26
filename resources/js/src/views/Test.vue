@@ -92,7 +92,7 @@ export default {
       let formData = this.toFormData();
 
       axios
-        .post(`/api/public/test`, formData)
+        .post(`/api/public/rate`, formData)
         .then((res) => {
           if (res.status === 200) {
             /* toastr.success('Faq saved successfully', 'Success'); */

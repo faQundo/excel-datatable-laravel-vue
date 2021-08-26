@@ -1,13 +1,56 @@
 <template>
-  <v-data-table
-    dense
-    :headers="headers"
-    :items="desserts"
-    item-key="name"
-    class="elevation-1"
-  ></v-data-table>
-</template>
+  <div>
+    <v-btn color="primary" elevation="2" rounded @click="newContract()"
+      >New contract <v-icon right dark> mdi-cloud-upload </v-icon></v-btn
+    >
+    <div class="simple-table row-pointer">
+      <v-data-table
+        dense
+        :headers="headers"
+        :items="contracts"
+        item-key="name"
+        class="elevation-1"
+        @click:row="handleClick"
+      ></v-data-table>
+    </div>
+    <!-- <div class="simple-table">
+        <v-simple-table>
+        <template v-slot:default>
+        <thead>
+            <tr>
+            <th class="text-left">
+                Name
+            </th>
+            <th class="text-left">
+                Date
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+            v-for="item in contracts"
+            :key="item.name"
+            >
+            <td class="text-left">{{ item.name }}</td>
+            <td class="text-left">{{ item.date }}</td>
+            </tr>
+        </tbody>
+        </template>
+    </v-simple-table>
 
+    </div> -->
+  </div>
+</template>
+<style  scoped>
+.row-pointer >>> tbody tr :hover {
+  cursor: pointer;
+}
+.simple-table {
+  width: 700px;
+  margin: auto;
+  padding-top: 30px;
+}
+</style>
 <script>
 import axios from "../axios";
 
@@ -18,7 +61,7 @@ export default {
     axios
       .get("/api/public/contracts")
       .then((response) => {
-        thisIns.contracts = response.data.data;
+        thisIns.contracts = response.data;
       })
       .catch((error) => {
         console.log("ERROR,", error);
@@ -126,6 +169,12 @@ export default {
   }),
 
   methods: {
+      handleClick(item) {
+       alert(JSON.stringify(item.id))
+        },
+    newContract() {
+         this.$router.push("/upload").catch(() => {});
+    },
     remove(id, i) {
       axios
         .delete(`/api/public/contacts/create`, this.contracts)

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Imports\RatesImport;
 use App\Models\Contract;
+use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
@@ -37,11 +38,12 @@ class ContractController extends Controller
     public function store(Request $request)
     {
         $contract = new Contract($request->all());
-
         $contract->save();
 
         if($request->has('file')){
-           /* (new VehiclesImport)->import(request()->file('your_file')); */
+            $import = new RatesImport;
+            $import->setContract($contract->id);
+            $import->import(request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX);
         }
     }
 

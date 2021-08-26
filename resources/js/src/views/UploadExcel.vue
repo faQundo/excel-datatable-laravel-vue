@@ -1,4 +1,5 @@
 <template>
+<v-card elevation="2" class="mx-auto container p-5 mt-5" width="1000" >
   <v-form
     ><!-- v-model="valid" -->
     <v-container>
@@ -46,6 +47,7 @@
     </v-container>
     <v-btn class="mr-4" @click="create()"> Guardar </v-btn>
   </v-form>
+</v-card>
 </template>
 
 <script>

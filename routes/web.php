@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 /* Route::get('/', function () {
     return view('application');
 }); */
-Route::get('import', [App\Http\Controllers\VehicleController::class , 'import']);
+/* Route::get('import', [App\Http\Controllers\VehicleController::class , 'import']); */
 
 Route::get('/{any}', function () {
     return view('application');
