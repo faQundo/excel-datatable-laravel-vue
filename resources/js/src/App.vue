@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <div id="nav">
-      <router-link to="/">Calendar</router-link>
-      <router-link to="/datatable">Datatable</router-link>
+      <router-link to="/">Upload</router-link>
       <router-link to="/contracts">Contracts</router-link>
+      <router-link to="/datatable">Datatable</router-link>
     </div>
     <router-view/>
   </v-app>
