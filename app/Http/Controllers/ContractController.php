@@ -38,10 +38,11 @@ class ContractController extends Controller
     {
         $contract = new Contract($request->all());
 
-        if($request->has('file')){
-            $file = new Rate();
-        }
         $contract->save();
+
+        if($request->has('file')){
+           /* (new VehiclesImport)->import(request()->file('your_file')); */
+        }
     }
 
     /**
