@@ -2040,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../axios */ "./resources/js/src/axios.js");
 //
 //
 //
@@ -2050,100 +2051,125 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    var thisIns = this;
+    _axios__WEBPACK_IMPORTED_MODULE_0__.default.get("/api/public/contracts").then(function (response) {
+      thisIns.contracts = response.data.data;
+    })["catch"](function (error) {
+      console.log("ERROR,", error);
+    });
+    this.isMounted = true;
+  },
   data: function data() {
     return {
+      contracts: [],
       desserts: [{
-        name: 'Frozen Yogurt',
+        name: "Frozen Yogurt",
         calories: 159,
         fat: 6.0,
         carbs: 24,
         protein: 4.0,
-        iron: '1%'
+        iron: "1%"
       }, {
-        name: 'Ice cream sandwich',
+        name: "Ice cream sandwich",
         calories: 237,
         fat: 9.0,
         carbs: 37,
         protein: 4.3,
-        iron: '1%'
+        iron: "1%"
       }, {
-        name: 'Eclair',
+        name: "Eclair",
         calories: 262,
         fat: 16.0,
         carbs: 23,
         protein: 6.0,
-        iron: '7%'
+        iron: "7%"
       }, {
-        name: 'Cupcake',
+        name: "Cupcake",
         calories: 305,
         fat: 3.7,
         carbs: 67,
         protein: 4.3,
-        iron: '8%'
+        iron: "8%"
       }, {
-        name: 'Gingerbread',
+        name: "Gingerbread",
         calories: 356,
         fat: 16.0,
         carbs: 49,
         protein: 3.9,
-        iron: '16%'
+        iron: "16%"
       }, {
-        name: 'Jelly bean',
+        name: "Jelly bean",
         calories: 375,
         fat: 0.0,
         carbs: 94,
         protein: 0.0,
-        iron: '0%'
+        iron: "0%"
       }, {
-        name: 'Lollipop',
+        name: "Lollipop",
         calories: 392,
         fat: 0.2,
         carbs: 98,
         protein: 0,
-        iron: '2%'
+        iron: "2%"
       }, {
-        name: 'Honeycomb',
+        name: "Honeycomb",
         calories: 408,
         fat: 3.2,
         carbs: 87,
         protein: 6.5,
-        iron: '45%'
+        iron: "45%"
       }, {
-        name: 'Donut',
+        name: "Donut",
         calories: 452,
         fat: 25.0,
         carbs: 51,
         protein: 4.9,
-        iron: '22%'
+        iron: "22%"
       }, {
-        name: 'KitKat',
+        name: "KitKat",
         calories: 518,
         fat: 26.0,
         carbs: 65,
         protein: 7,
-        iron: '6%'
+        iron: "6%"
       }],
       headers: [
       /* {
-        text: 'Dessert (100g serving)',
-        align: 'start',
-        sortable: false,
-        value: 'name',
-      }, */
+          text: 'Dessert (100g serving)',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        }, */
       {
-        text: 'Contract',
-        align: 'start',
-        value: 'name'
+        text: "Contract",
+        align: "start",
+        value: "name"
       }, {
-        text: 'Date',
-        value: 'date'
+        text: "Date",
+        value: "date"
       }
       /* { text: 'Carbs (g)', value: 'carbs' },
-      { text: 'Protein (g)', value: 'protein' },
-      { text: 'Iron (%)', value: 'iron' }, */
+        { text: 'Protein (g)', value: 'protein' },
+        { text: 'Iron (%)', value: 'iron' }, */
       ]
     };
+  },
+  methods: {
+    remove: function remove(id, i) {
+      var _this = this;
+
+      _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete("/api/public/contacts/create", this.contracts).then(function (res) {
+        if (res.status === 200) {
+          //toastr.success('Faq saved successfully', 'Success');
+          _this.assessment.splice(i, 1);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      })["finally"](function () {});
+    }
   }
 });
 
@@ -2327,6 +2353,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../axios */ "./resources/js/src/axios.js");
 //
 //
 //
@@ -2377,17 +2404,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      contract: '',
-      rules: [function (value) {
-        return !value || value.size < 2000000 || "Avatar size should be less than 2 MB!";
-      }],
+      /* contract: "", */
+      contract: {
+        name: '',
+        date: '',
+        file: ''
+      },
+
+      /* rules: [
+        (value) =>
+          !value ||
+          value.size < 2000000 ||
+          "Avatar size should be less than 2 MB!",
+      ], */
       date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
       menu2: false
     };
+  },
+  methods: {
+    toFormData: function toFormData() {
+      var formData = new FormData();
+      formData.append("id", this.contract.id ? this.contract.id : null);
+      formData.append("name", this.contract.name);
+
+      if (!this.contract.date) {
+        formData.append("date", null);
+      } else {
+        formData.append("date", this.contract.date);
+      }
+
+      if (this.contract.file) formData.append("file", this.contract.file);
+      return formData;
+    },
+    create: function create() {
+      var _this = this;
+
+      var formData = this.toFormData();
+      _axios__WEBPACK_IMPORTED_MODULE_0__.default.post("/api/public/contracts", formData).then(function (res) {
+        if (res.status === 200) {
+          /* toastr.success('Faq saved successfully', 'Success'); */
+          _this.$router.push("/contracts")["catch"](function () {});
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      })["finally"](function () {
+        /* this.$router.push("/contracts").catch(() => {}); */
+      });
+    },
+    confirmUpload: function confirmUpload() {
+      var thisIns = this;
+      alert('confirm upload');
+    }
   }
 });
 
@@ -2408,6 +2479,29 @@ __webpack_require__.r(__webpack_exports__);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
+/***/ }),
+
+/***/ "./resources/js/src/axios.js":
+/*!***********************************!*\
+  !*** ./resources/js/src/axios.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+// axios
+
+var baseURL = '';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: baseURL // You can add your headers here
+
+}));
 
 /***/ }),
 
@@ -3986,15 +4080,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-form",
-    {
-      model: {
-        value: _vm.valid,
-        callback: function($$v) {
-          _vm.valid = $$v
-        },
-        expression: "valid"
-      }
-    },
     [
       _c(
         "v-container",
@@ -4009,11 +4094,11 @@ var render = function() {
                   _c("v-text-field", {
                     attrs: { label: "Nombre" },
                     model: {
-                      value: _vm.contract,
+                      value: _vm.contract.name,
                       callback: function($$v) {
-                        _vm.contract = $$v
+                        _vm.$set(_vm.contract, "name", $$v)
                       },
-                      expression: "contract"
+                      expression: "contract.name"
                     }
                   })
                 ],
@@ -4087,11 +4172,11 @@ var render = function() {
                           }
                         },
                         model: {
-                          value: _vm.date,
+                          value: _vm.contract.date,
                           callback: function($$v) {
-                            _vm.date = $$v
+                            _vm.$set(_vm.contract, "date", $$v)
                           },
-                          expression: "date"
+                          expression: "contract.date"
                         }
                       })
                     ],
@@ -4107,10 +4192,16 @@ var render = function() {
                 [
                   _c("v-file-input", {
                     attrs: {
-                      rules: _vm.rules,
                       accept: "file/xls , file/xlsx",
                       placeholder: "Select excel file",
                       label: "Archivo"
+                    },
+                    model: {
+                      value: _vm.contract.file,
+                      callback: function($$v) {
+                        _vm.$set(_vm.contract, "file", $$v)
+                      },
+                      expression: "contract.file"
                     }
                   })
                 ],
@@ -4123,9 +4214,18 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-btn", { staticClass: "mr-4", attrs: { type: "submit" } }, [
-        _vm._v(" Guardar ")
-      ])
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          on: {
+            click: function($event) {
+              return _vm.create()
+            }
+          }
+        },
+        [_vm._v(" Guardar ")]
+      )
     ],
     1
   )
