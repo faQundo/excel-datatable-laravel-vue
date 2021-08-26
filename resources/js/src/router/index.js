@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Upload from '../views/UploadExcel.vue'
 import Datatable from '../views/Datatable.vue'
 import Contracts from '../views/Contracts.vue'
+import Test from '../views/Test.vue'
+
 
 Vue.use(VueRouter)
 
@@ -22,6 +24,11 @@ const routes = [
     path: '/contracts',
     name: 'Contracts',
     component: Contracts
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
   },
 
   //{

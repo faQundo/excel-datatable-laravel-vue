@@ -26,4 +26,6 @@ Route::group([
         'contracts' => \App\Http\Controllers\ContractController::class,
         'rates' => \App\Http\Controllers\RateController::class,
     ]);
+
+    Route::post('test', [App\Http\Controllers\VehicleController::class , 'import']);
 });
