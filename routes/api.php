@@ -23,7 +23,7 @@ Route::group([
 ], function ($router) {
     Route::apiResources([
         'users' => \App\Http\Controllers\UserController::class,
-        'payments' => \App\Http\Controllers\PaymentController::class,
-        'diaries' => \App\Http\Controllers\DiaryController::class,
+        'contracts' => \App\Http\Controllers\ContractController::class,
+        'rates' => \App\Http\Controllers\RateController::class,
     ]);
 });
