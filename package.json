@@ -10,6 +10,7 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000"
   },
   "dependencies": {
+    "sweetalert2": "^11.1.4",
     "vue-router": "^3.2.0",
     "vuetify": "^2.5.8"
   },

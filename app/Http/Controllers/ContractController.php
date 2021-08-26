@@ -36,7 +36,12 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $contract = new Contract($request->all());
+
+        if($request->has('file')){
+            $file = new Rate();
+        }
+        $contract->save();
     }
 
     /**

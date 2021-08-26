@@ -1,5 +1,6 @@
 <template>
-  <v-form ><!-- v-model="valid" -->
+  <v-form
+    ><!-- v-model="valid" -->
     <v-container>
       <v-row>
         <v-col cols="12" md="4">
@@ -33,10 +34,9 @@
         </v-col>
 
         <v-col cols="12" md="4">
-            <!-- :rules="rules" -->
+          <!-- :rules="rules" -->
           <v-file-input
             v-model="contract.file"
-
             accept="file/xls , file/xlsx"
             placeholder="Select excel file"
             label="Archivo"
@@ -50,14 +50,15 @@
 
 <script>
 import axios from "../axios";
+import Swal from "sweetalert2";
 
 export default {
   data: () => ({
     /* contract: "", */
     contract: {
-        name:'',
-        date:'',
-        file:''
+      name: "",
+      date: "",
+      file: "",
     },
     /* rules: [
       (value) =>
@@ -95,6 +96,13 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             /* toastr.success('Faq saved successfully', 'Success'); */
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your contract has been saved",
+              showConfirmButton: false,
+              timer: 2500,
+            });
             this.$router.push("/contracts").catch(() => {});
           }
         })
@@ -102,14 +110,8 @@ export default {
           console.log(error);
         })
         .finally(() => {
-
-            /* this.$router.push("/contracts").catch(() => {}); */
+          /* this.$router.push("/contracts").catch(() => {}); */
         });
-    },
-
-    confirmUpload() {
-      const thisIns = this;
-    alert('confirm upload')
     },
   },
 };
