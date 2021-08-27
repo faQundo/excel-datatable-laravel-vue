@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\RatesImport;
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use Validator;
 
 class ContractController extends Controller
 {
@@ -37,13 +38,24 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            [
+                'file'      => $request->file,
+                'extension' => strtolower($request->file->getClientOriginalExtension()),
+            ],
+            [
+                'file'          => 'required',
+                'extension'      => 'required|in:xlsx,xls',
+            ]
+          );
+
         $contract = new Contract($request->all());
         $contract->save();
 
         if($request->has('file')){
             $import = new RatesImport;
             $import->setContract($contract->id);
-            $import->import(request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX);
+            $import->import(request()->file('file'));
         }
     }
 

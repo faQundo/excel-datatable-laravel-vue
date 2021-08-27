@@ -35,7 +35,7 @@ class RatesImport implements ToModel ,WithHeadingRow
             'origin' => $row['POL'],
             'destination' => $row['POD'],
             'currency' => $row['Curr.'],
-            'tewnty' => $row["20'GP"],
+            'twenty' => $row["20'GP"],
             'forty' =>  $row["40'GP"],
             'fortyhc' => $row["40'HC"],
         ]);

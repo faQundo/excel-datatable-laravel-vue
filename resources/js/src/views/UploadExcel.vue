@@ -19,7 +19,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="date"
+                v-model="contract.date"
                 label="Fecha"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -38,7 +38,7 @@
           <!-- :rules="rules" -->
           <v-file-input
             v-model="contract.file"
-            accept="file/xls , file/xlsx"
+            accept=".xls , .xlsx"
             placeholder="Select excel file"
             label="Archivo"
           ></v-file-input>
@@ -59,7 +59,9 @@ export default {
     /* contract: "", */
     contract: {
       name: "",
-      date: "",
+      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10),
       file: "",
     },
     /* rules: [
@@ -68,9 +70,6 @@ export default {
         value.size < 2000000 ||
         "Avatar size should be less than 2 MB!",
     ], */
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .substr(0, 10),
     menu2: false,
   }),
   methods: {
@@ -109,7 +108,13 @@ export default {
           }
         })
         .catch((error) => {
-          console.log(error);
+         Swal.fire({
+              position: "center",
+              icon: "error",
+              title: error,
+              showConfirmButton: false,
+              timer: 2500,
+            });
         })
         .finally(() => {
           /* this.$router.push("/contracts").catch(() => {}); */

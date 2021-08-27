@@ -2462,7 +2462,7 @@ __webpack_require__.r(__webpack_exports__);
       /* contract: "", */
       contract: {
         name: "",
-        date: "",
+        date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
         file: ""
       },
 
@@ -2472,7 +2472,6 @@ __webpack_require__.r(__webpack_exports__);
           value.size < 2000000 ||
           "Avatar size should be less than 2 MB!",
       ], */
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
       menu2: false
     };
   },
@@ -2509,7 +2508,13 @@ __webpack_require__.r(__webpack_exports__);
           _this.$router.push("/contracts")["catch"](function () {});
         }
       })["catch"](function (error) {
-        console.log(error);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+          position: "center",
+          icon: "error",
+          title: error,
+          showConfirmButton: false,
+          timer: 2500
+        });
       })["finally"](function () {
         /* this.$router.push("/contracts").catch(() => {}); */
       });
@@ -7952,11 +7957,15 @@ var render = function() {
                                             readonly: ""
                                           },
                                           model: {
-                                            value: _vm.date,
+                                            value: _vm.contract.date,
                                             callback: function($$v) {
-                                              _vm.date = $$v
+                                              _vm.$set(
+                                                _vm.contract,
+                                                "date",
+                                                $$v
+                                              )
                                             },
-                                            expression: "date"
+                                            expression: "contract.date"
                                           }
                                         },
                                         "v-text-field",
@@ -8007,7 +8016,7 @@ var render = function() {
                     [
                       _c("v-file-input", {
                         attrs: {
-                          accept: "file/xls , file/xlsx",
+                          accept: ".xls , .xlsx",
                           placeholder: "Select excel file",
                           label: "Archivo"
                         },
