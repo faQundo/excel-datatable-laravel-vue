@@ -27,6 +27,4 @@ Route::group([
         'rates' => \App\Http\Controllers\RateController::class,
     ]);
 
-    Route::post('test', [App\Http\Controllers\VehicleController::class , 'import']);
-    Route::post('rate', [App\Http\Controllers\ContractController::class , 'store']);
 });
