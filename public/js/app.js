@@ -1882,6 +1882,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'App',
@@ -2070,32 +2075,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
@@ -2110,101 +2089,19 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       contracts: [],
-      desserts: [{
-        name: "Frozen Yogurt",
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: "1%"
-      }, {
-        name: "Ice cream sandwich",
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: "1%"
-      }, {
-        name: "Eclair",
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0,
-        iron: "7%"
-      }, {
-        name: "Cupcake",
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3,
-        iron: "8%"
-      }, {
-        name: "Gingerbread",
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9,
-        iron: "16%"
-      }, {
-        name: "Jelly bean",
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0,
-        iron: "0%"
-      }, {
-        name: "Lollipop",
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0,
-        iron: "2%"
-      }, {
-        name: "Honeycomb",
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5,
-        iron: "45%"
-      }, {
-        name: "Donut",
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9,
-        iron: "22%"
-      }, {
-        name: "KitKat",
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein: 7,
-        iron: "6%"
-      }],
-      headers: [
-      /* {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        }, */
-      {
+      headers: [{
         text: "Contract",
         align: "start",
         value: "name"
       }, {
         text: "Date",
         value: "date"
-      }
-      /* { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }, */
-      ]
+      }]
     };
   },
   methods: {
     handleClick: function handleClick(item) {
-      alert(JSON.stringify(item.id));
+      this.$router.push("/rates/edit/" + item.id)["catch"](function () {});
     },
     newContract: function newContract() {
       this.$router.push("/upload")["catch"](function () {});
@@ -2274,6 +2171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../axios */ "./resources/js/src/axios.js");
 //
 //
 //
@@ -2291,110 +2189,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    if (this.$route.params.id !== undefined) {
+      var thisIns = this;
+      thisIns.isEdit = true;
+      _axios__WEBPACK_IMPORTED_MODULE_0__.default.get("/api/public/rates/".concat(this.$route.params.id)).then(function (res) {
+        thisIns.rates = res.data.data;
+      })["catch"](function (error) {
+        // toastr.success(error.message, 'Error');
+        console.log('ERROR,', error);
+      }); //this.isMounted = true
+    }
+
+    this.isMounted = true;
+  },
   data: function data() {
     return {
-      desserts: [{
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: '1%'
-      }, {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: '1%'
-      }, {
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0,
-        iron: '7%'
-      }, {
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3,
-        iron: '8%'
-      }, {
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9,
-        iron: '16%'
-      }, {
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0,
-        iron: '0%'
-      }, {
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0,
-        iron: '2%'
-      }, {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5,
-        iron: '45%'
-      }, {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9,
-        iron: '22%'
-      },
-      /* rates */
-      {
-        origin: 'KitKat',
-        destination: 518,
-        currency: 26.0,
-        twenty: 65,
-        forty: 7,
-        fortyhc: '6%'
-      }],
+      rates: [],
       headers: [{
-        text: 'Nombre',
-        align: 'start',
-        sortable: false,
-        value: 'name'
+        text: "Nombre",
+        align: "start",
+        value: "name"
       }, {
-        text: 'Fecha',
-        value: 'date'
+        text: "Fecha",
+        value: "date"
       }, {
-        text: 'Origen',
-        value: 'origin'
+        text: "Origen",
+        value: "origin"
       }, {
-        text: 'Destino',
-        value: 'destination'
+        text: "Destino",
+        value: "destination"
       }, {
-        text: 'Tarifa 20',
-        value: 'twenty'
+        text: "Tarifa 20",
+        value: "twenty"
       }, {
-        text: 'Tarifa 40',
-        value: 'forty'
+        text: "Tarifa 40",
+        value: "forty"
       }, {
-        text: 'Tarifa 40HC',
-        value: 'fortyhc'
+        text: "Tarifa 40HC",
+        value: "fortyhc"
       }, {
-        text: 'Moneda',
-        value: 'currency'
+        text: "Moneda",
+        value: "currency"
       }]
     };
+  },
+  methods: {
+    back: function back() {
+      this.$router.push("/contracts")["catch"](function () {});
+    },
+    remove: function remove(id, i) {
+      var _this = this;
+
+      _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete("/api/public/contacts/create", this.contracts).then(function (res) {
+        if (res.status === 200) {
+          //toastr.success('Faq saved successfully', 'Success');
+          _this.assessment.splice(i, 1);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      })["finally"](function () {});
+    }
   }
 });
 
@@ -2708,6 +2567,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2865,11 +2728,13 @@ var routes = [{
   path: '/upload',
   name: 'Upload',
   component: _views_UploadExcel_vue__WEBPACK_IMPORTED_MODULE_1__.default
-}, {
+},
+/* {
   path: '/rates',
   name: 'Rates',
-  component: _views_Rates_vue__WEBPACK_IMPORTED_MODULE_5__.default
-}, {
+  component: Rates
+}, */
+{
   path: '/contracts',
   name: 'Contracts',
   component: _views_Contracts_vue__WEBPACK_IMPORTED_MODULE_2__.default
@@ -2877,6 +2742,10 @@ var routes = [{
   path: '/test',
   name: 'Test',
   component: _views_Test_vue__WEBPACK_IMPORTED_MODULE_3__.default
+}, {
+  path: '/rates/edit/:id',
+  name: 'Rates-edit',
+  component: _views_Rates_vue__WEBPACK_IMPORTED_MODULE_5__.default
 } //{
 // path: '/about',
 //name: 'About',
@@ -2991,7 +2860,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.background[data-v-63894228] {\n    position: absolute;\n}\n.button-img[data-v-63894228] {\n    position: absolute;\n    top:300px;\n    left:45%;\n    cursor:pointer\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.background[data-v-63894228] {\n  position: absolute;\n}\n.button-img[data-v-63894228] {\n  position: absolute;\n  top: 300px;\n  left: 45%;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7481,22 +7350,18 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c(
-        "div",
-        { attrs: { id: "nav" } },
-        [
-          _c("router-link", { attrs: { to: "/" } }, [_vm._v("Welcome")]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: "/upload" } }, [_vm._v("Upload")]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: "/contracts" } }, [
-            _vm._v("Contracts")
-          ]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: "/rates" } }, [_vm._v("Rates")])
-        ],
-        1
-      ),
+      _c("nav", { staticClass: "navbar navbar-light bg-light" }, [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+          _c("img", {
+            attrs: {
+              src: "https://cargofive.com/wp-content/uploads/2018/07/logo.svg",
+              width: "100",
+              height: "50",
+              alt: "logo"
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _c("router-view")
     ],
@@ -7778,47 +7643,50 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "text-right pr-4" },
-        [
-          _c(
-            "v-btn",
-            {
-              attrs: { color: "primary", elevation: "2", rounded: "" },
-              on: {
-                click: function($event) {
-                  return _vm.newContract()
-                }
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "text-right pr-4" },
+      [
+        _c(
+          "v-btn",
+          {
+            attrs: { color: "primary", elevation: "2", rounded: "" },
+            on: {
+              click: function($event) {
+                return _vm.back()
               }
-            },
-            [
-              _vm._v("Back"),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v(" mdi-arrow-left")
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-data-table", {
-        staticClass: "elevation-1",
-        attrs: {
-          dense: "",
-          headers: _vm.headers,
-          items: _vm.desserts,
-          "item-key": "name"
-        }
-      })
-    ],
-    1
-  )
+            }
+          },
+          [
+            _vm._v("Back"),
+            _c("v-icon", { attrs: { right: "", dark: "" } }, [
+              _vm._v(" mdi-arrow-left")
+            ])
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container-table p-3" },
+      [
+        _c("v-data-table", {
+          staticClass: "elevation-1",
+          attrs: {
+            dense: "",
+            headers: _vm.headers,
+            items: _vm.rates,
+            "item-key": "name"
+          }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8206,15 +8074,12 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("v-img", {
+      _c("v-parallax", {
         attrs: {
-          "lazy-src":
-            "https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg",
-          "max-height": "517",
-          "max-width": "1366",
-          "content-class": "background",
           src:
-            "https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg"
+            "https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg",
+          height: "590",
+          "max-width": "766"
         }
       }),
       _vm._v(" "),

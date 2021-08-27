@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Rate;
+use App\Models\Contract;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Resources\Rate as ResourcesRate;
 
 class RateController extends Controller
 {
@@ -45,9 +48,16 @@ class RateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($contractId)
     {
-        //
+        try {
+            $contract = Contract::findOrFail($contractId);
+
+            return ResourcesRate::collection($contract->rates);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return $this->genericResponse('error', $e->getMessage(), 500);
+        }
     }
 
     /**
@@ -56,9 +66,16 @@ class RateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($contractId)
     {
-        //
+        try {
+            $contract = Contract::findOrFail($contractId);
+
+            return ResourcesRate::collection($contract->rates);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return $this->genericResponse('error', $e->getMessage(), 500);
+        }
     }
 
     /**

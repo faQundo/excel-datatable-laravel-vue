@@ -1,14 +1,19 @@
 <template>
   <div>
-    <v-img
+    <!-- <v-img
       lazy-src="https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg"
       max-height="517"
       max-width="1366"
       content-class="background"
       src="https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg"
-    ></v-img>
+    ></v-img> -->
+    <v-parallax
+      src="https://cargofive.com/wp-content/uploads/2019/04/01Header_FCL-shipping_2.jpg"
+      height="590"
+      max-width="766"
+    ></v-parallax>
     <div class="button-img">
-        <v-img
+      <v-img
         :src="logo"
         class="my-3"
         contain
@@ -16,21 +21,20 @@
         height="50"
         content-class="button-img"
         @click="start()"
-        />
-
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
 .background {
-    position: absolute;
+  position: absolute;
 }
 .button-img {
-    position: absolute;
-    top:300px;
-    left:45%;
-    cursor:pointer
+  position: absolute;
+  top: 300px;
+  left: 45%;
+  cursor: pointer;
 }
 </style>
 
@@ -41,10 +45,10 @@ export default {
   data: () => ({
     logo: logo,
   }),
-  methods:{
-      start(){
-          this.$router.push("/contracts").catch(() => {});
-      }
-  }
+  methods: {
+    start() {
+      this.$router.push("/contracts").catch(() => {});
+    },
+  },
 };
 </script>

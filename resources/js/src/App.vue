@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Welcome</router-link>
       <router-link to="/upload">Upload</router-link>
       <router-link to="/contracts">Contracts</router-link>
       <router-link to="/rates">Rates</router-link>
 
-    </div>
+    </div> -->
+ <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="https://cargofive.com/wp-content/uploads/2018/07/logo.svg" width="100" height="50" alt="logo">
+  </a>
+</nav>
     <router-view/>
   </v-app>
 </template>

@@ -21,11 +21,11 @@ const routes = [
     name: 'Upload',
     component: Upload
   },
-  {
+  /* {
     path: '/rates',
     name: 'Rates',
     component: Rates
-  },
+  }, */
   {
     path: '/contracts',
     name: 'Contracts',
@@ -36,7 +36,11 @@ const routes = [
     name: 'Test',
     component: Test
   },
-
+  {
+    path: '/rates/edit/:id',
+    name: 'Rates-edit',
+    component: Rates
+  }
   //{
    // path: '/about',
     //name: 'About',

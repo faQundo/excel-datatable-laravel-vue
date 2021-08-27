@@ -13,7 +13,7 @@ class Rate extends Model
         'origin',
         'destination',
         'currency',
-        'tewnty',
+        'twenty',
         'forty',
         'fortyhc',
     ];

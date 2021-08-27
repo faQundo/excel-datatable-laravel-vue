@@ -20,7 +20,7 @@ class CreateRatesTable extends Migration
             $table->string('origin')->nullable();
             $table->string('destination')->nullable();
             $table->string('currency')->nullable();
-            $table->string('tewnty')->nullable();
+            $table->string('twenty')->nullable();
             $table->string('forty')->nullable();
             $table->string('fortyhc')->nullable();
             $table->timestamps();

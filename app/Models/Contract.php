@@ -15,5 +15,8 @@ class Contract extends Model
         'file',
     ];
 
+    public function rates() {
 
+        return $this->hasMany(Rate::class);
+    }
 }
