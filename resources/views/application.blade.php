@@ -411,6 +411,7 @@
         <strong>We're sorry but doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app">
+        test1
     </div>
 
 
