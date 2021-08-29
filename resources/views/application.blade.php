@@ -7,7 +7,8 @@
 
     <title>CargoFive component</title>
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    {{-- <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet"> --}}
+    <link href="{{ secure_asset(mix('css/app.css')) }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -416,7 +417,8 @@
 
 
     {{-- <script src="{{asset("/js/app.js")}}"></script> --}}
-    <script src="{{ asset(mix('js/app.js')) }}"></script>
+    {{-- <script src="{{ asset(mix('js/app.js')) }}"></script> --}}
+    <script src="{{ secure_asset(mix('js/app.js')) }}"></script>
 </body>
 
 </html>
