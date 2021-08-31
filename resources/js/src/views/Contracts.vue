@@ -11,10 +11,27 @@
         item-key="name"
         class="elevation-1"
         @click:row="handleClick"
-      ></v-data-table>
+      >
+      <!-- <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template> -->
+      </v-data-table>
     </div>
   </div>
 </template>
+
 <style  scoped>
 .row-pointer >>> tbody tr :hover {
   cursor: pointer;
